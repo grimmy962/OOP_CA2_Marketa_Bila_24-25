@@ -1,0 +1,4 @@
+boolean   2  	 	 	 
+5. boolean finished; 
+12. public Boolean getStatus() { int 1  
+6. private int age;
