@@ -5,8 +5,8 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- *  Name:
- *  Class Group:
+ *  Name: Marketa Bila
+ *  Class Group: GD2A
  */
 
 public class Question6      // Flight take-off (Queue)
@@ -35,20 +35,38 @@ public class Question6      // Flight take-off (Queue)
                 } else {
                     System.out.println("Invalid command");
                 }
-
+            }
+            else if(command.startsWith("land")){
+                String flightCode = command.substring(5).trim();
+                if(!flightCode.isEmpty()){
+                    landingQueue.add(flightCode);
+                    System.out.println(flightCode + "queued for landing");
+                }
+                else{
+                    System.out.println("Invalid command.");
+                }
             }
             else if(command.equalsIgnoreCase("next")){
                 if(!landingQueue.isEmpty()){
                     System.out.println("Landing: " + landingQueue.poll());
                 }
-                else if
+                else if(!takeOffQueue.isEmpty()){
+                    System.out.println("Take off: " + takeOffQueue.poll());
                 }
+                else{
+                    System.out.println("No flights waiting for to land or take off");
+                }
+                }
+            else{
+                System.out.println("Invalid command");
             }
+            }
+        keyboard.close();
         }
 
 
     public static void main(String[] args)
     {
-
+        simulateAirport();
     }
 }
