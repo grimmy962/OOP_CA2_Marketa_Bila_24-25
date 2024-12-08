@@ -8,15 +8,21 @@ import java.util.Stack;
  *  Name: Marketa Bila
  *  Class Group: GD2A
  */
+//
 
 public class Question4  // Flood Fill (Stack, 2D Array)
 {
+    static final int ROWS = 5;
+    static final int COLUMNS = 5;
+
     public static void main(String[] args) {
         start();
     }
     public static void start()
     {
-        //set up valunbles
+
+
+        //set up variables
         int[][] arr = floodFillStart();
         Scanner keyboard = new Scanner(System.in);
         int rowStart = 0;
@@ -34,31 +40,29 @@ public class Question4  // Flood Fill (Stack, 2D Array)
         display(arr);
     }
 
-    /*
-        Starter function to create the 2D array and populate it with zeros
-     */
-
-    //make the 2d array, put everything at 0 to change it later
     public static int[][]  floodFillStart() {
-        Scanner kb = new Scanner(System.in);
-        int[][] arr = new int[10][10];
-        for (int x = 0; x < 10; x++)
-        {
-            for (int y = 0; y < 10; y++)
-            {
-                arr[x][y] = 0;
-            }
-        }
-        return arr;
+        // Starter matrix (2D Array) with 0 representing an empty cell,
+        // and -1 representing a wall. Flood fill can not cross through
+        // a wall ( and not pass through diagionally).
+        //
+        int[][] matrix = new int[ROWS][COLUMNS]; // 2D Array of int
+        // define values for each row, -1 to prevent change
+        matrix[0] = new int[]{ 0, 0, -1, -1, 0};
+        matrix[1] = new int[]{ 0, 0, -1, -1, 0};
+        matrix[2] = new int[]{-1, 0,  0,  0, 0};
+        matrix[3] = new int[]{-1, 0, -1, -1, 0};
+        matrix[4] = new int[]{ 0,-1, -1,  0, 0};
+
+        return matrix;
     }
     /*
         Helper function to display the image
      */
     public static void display(int[][] arr)
     {
-        for (int x = 0; x < 10; x++)
+        for (int x = 0; x < ROWS; x++)
         {
-            for (int y = 0; y < 10; y++)
+            for (int y = 0; y < COLUMNS; y++)
             {
                 System.out.printf("%4d", arr[x][y]);
             }
@@ -74,18 +78,23 @@ public class Question4  // Flood Fill (Stack, 2D Array)
         while(!stack.isEmpty()){
             Cell current = stack.pop();
 
-            //check if the the cell is filled or not
-            if(current.row < 0 || current.row >=10 || current.col < 0 || current.col >=10 || arr[current.row][current.col] !=0){
+            //check if the cell is filled or not
+            if(current.row < 0 || current.row >=5 || current.col < 0 || current.col >=5 || arr[current.row][current.col] !=0){
                 continue;
             }
 
             //something to fill the cell and add a number to it
             arr[current.row][current.col] = fillValue++;
 
-            //add movement based on the location, t
+            //if statement for each of the directions and to check which way to go plus if one of the directions was chosen already, go the other direction
+            //add movement based on the location, north, south, east, west
+            //north
             stack.push(new Cell(current.row -1, current.col));
+            //south
             stack.push(new Cell(current.row +1, current.col));
+            //west
             stack.push(new Cell(current.row, current.col -1));
+            //east
             stack.push(new Cell(current.row, current.col +1));
         }
     }

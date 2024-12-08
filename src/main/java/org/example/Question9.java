@@ -2,8 +2,8 @@ package org.example;
 
 import java.util.Scanner;
 /**
- *  Name:
- *  Class Group:
+ *  Name: Marketa Bila
+ *  Class Group: GD2A
  */
 public class Question9 {
 
