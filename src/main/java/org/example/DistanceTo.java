@@ -1,24 +1,24 @@
 package org.example;
 
 public class DistanceTo implements Comparable<DistanceTo> {
-    private String target;
-    private int distance;
+     String city;
+     int distance;
 
-    public DistanceTo(String city, int dist)
+    public DistanceTo(String city, int distance)
     {
-        target = city;
-        distance = dist;
+        this.city = city;
+        this.distance = distance;
     }
     public String getTarget()
     {
-        return target;
+        return city;
     }
     public int getDistance()
     {
         return distance;
     }
-    public int compareTo(DistanceTo other)
-    {
-        return distance - other.distance;
+    @Override
+    public int compareTo(DistanceTo other) {
+        return Integer.compare(this.distance, other.distance);
     }
 }
